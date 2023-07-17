@@ -41,6 +41,22 @@ export default function ViewUsers() {
     }
   };
 
+  const handleDelete = async (its) => {
+    try {
+      console.log('this is its fe', its)
+      const response = await fetch(`/api/delete-user/${its}`, {
+        method: 'DELETE',
+      });
+  
+      if (!response.ok) throw new Error('Deletion failed');
+  
+      // Remove the user from the users state
+      setUsers(users.filter((user) => user.its !== its));
+    } catch (error) {
+      console.error('Failed to delete user:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
@@ -66,7 +82,7 @@ export default function ViewUsers() {
             <div className="absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl">
               <a
                 href="#"
-                className="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-purple-500 hover:text-white"
+                className="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-[#1c6e04] hover:text-white"
                 onClick={handleLogout}
               >
                 Logout
@@ -109,6 +125,7 @@ export default function ViewUsers() {
                 <th className="text-left p-3 px-5">Name</th>
                 <th className="text-left p-3 px-5">Role</th>
                 <th className="text-left p-3 px-5">Logged in</th>
+                <th className="text-left p-3 px-5">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -119,6 +136,11 @@ export default function ViewUsers() {
                   <td className="p-3 px-5">{oneUser.userRole}</td>
                   <td className="p-3 px-5">
                     {oneUser.isLoggedIn ? 'Yes' : 'No'}
+                  </td>
+                  <td className="p-3 px-5">
+                    <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => handleDelete(oneUser.its)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}
