@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Admin() {
   const [name, setName] = useState('');
@@ -7,6 +7,16 @@ export default function Admin() {
   const [phone, setPhone] = useState('');
   const [address, setAddress] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [userData, setUserData] = useState(null);
+
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user && JSON.parse(user).userRole === 'admin') {
+      setUserData(JSON.parse(user));
+    } else {
+      window.location.href = '/';
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,9 +36,23 @@ export default function Admin() {
     }
   };
 
-  const handleLogout = () => {
-    // Implement your logout functionality here
-    console.log("Logout Function");
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          its: userData?.its
+        })
+      });
+      if (!response.ok) throw new Error('Logout failed');
+      localStorage.removeItem('user');
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Failed to logout:', error);
+    }
   };
 
   return (
@@ -38,7 +62,7 @@ export default function Admin() {
         <div className="relative inline-block">
           <div>
             <button onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#fff] text-white">
-              User Name
+              {userData?.name}
               <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" stroke="none"><path d="M7 7l3-3 3 3m0 6l-3 3-3-3"></path></svg>
             </button>
           </div>
@@ -52,10 +76,10 @@ export default function Admin() {
       <div className="flex-1 flex min-h-screen">
         <aside className="p-4 w-64 bg-[#edb767]">
           <ul className="space-y-2">
-            <li><a href="#!" className="block">Create Login</a></li>
+            <li><a href="/admin" className="block">Create Login</a></li>
             <li><a href="#!" className="block">View Reports</a></li>
-            <li><a href="#!" className="block">View Screen</a></li>
-            <li><a href="#!" className="block">View Users</a></li>
+            <li><a href="/screen" className="block">View Screen</a></li>
+            <li><a href="/viewUsers" className="block">View Users</a></li>
           </ul>
         </aside>
         <main className="flex-1 p-24">

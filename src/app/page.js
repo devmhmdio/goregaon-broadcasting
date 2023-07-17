@@ -25,20 +25,19 @@ export default function Login() {
     }
 
     if (res.status === 200) {
+      localStorage.setItem('user', JSON.stringify(data.user));
+
       if (data.user.userRole === 'user') {
         if (data.user.isLoggedIn === false) {
-          localStorage.setItem('user', JSON.stringify(data.user));
           window.location.href = '/screen';
         } else {
           alert('Already logged in');
           window.location.reload();
         }
-      }
-      if (data.user.userRole === 'admin') {
+      } else if (data.user.userRole === 'admin') {
         window.location.href = '/admin';
       }
     } else {
-      // If it wasn't, show an error message
       const body = await res.json();
       setError(body.error);
     }

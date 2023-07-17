@@ -3,28 +3,21 @@ import dbConnect from '@/utils/dbConnect';
 import User from '@/models/User';
 
 export default async function handler(req, res) {
-  try {
-    const { its } = req.body;
-    await dbConnect();
+  const { its } = req.body;
+  await dbConnect();
 
-    const user = await User.findOne({ its });
+  const user = await User.findOne({ its });
 
-    if (user) {
-      if (user.isLoggedIn === true) {
-        res.status(200).send({ status: 'Already logged in' });
-      }
-      res.status(200).send({ user: user });
-      await User.findOneAndUpdate(
-        { its },
-        { isLoggedIn: true },
-        { new: true }
-      );
-      
-    } else {
-      res.status(401).send({ error: 'Invalid ITS' });
-    }
-  } catch (err) {
-    console.log(err);
-    res.status(500).json({ msg: 'Something went wrong.' });
+  if (!user) {
+    return res.status(401).send({ error: 'Invalid ITS' });
   }
+
+  if (user.isLoggedIn && user.userRole === 'user') {
+    return res.status(200).send({ status: 'Already logged in' });
+  }
+
+  user.isLoggedIn = true;
+  await user.save();
+
+  res.status(200).send({ user });
 }
