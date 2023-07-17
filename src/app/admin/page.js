@@ -8,8 +8,22 @@ export default function Admin() {
   const [address, setAddress] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const res = await fetch("/api/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name, its, phone, address }),
+    });
+
+    if (res.status === 200) {
+      alert('User created');
+    } else {
+      // If it wasn't, show an error message
+      const body = await res.json();
+      // setError(body.error);
+    }
     // Do something with name, ITS, phone, address
     console.log(`Name: ${name}, ITS: ${its}, Phone: ${phone}, Address: ${address}`);
   };

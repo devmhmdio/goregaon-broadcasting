@@ -5,8 +5,24 @@ import Image from "next/image";
 
 export default function Login() {
   const [its, setIts] = useState("");
-  const handleSubmit = (e) => {
+  const [error, setError] = useState(null);
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const res = await fetch("/api/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ its }),
+    });
+
+    if (res.status === 200) {
+      window.location.href = '/admin';
+    } else {
+      // If it wasn't, show an error message
+      const body = await res.json();
+      setError(body.error);
+    }
 
     // Do something with email
     console.log(`ITS: ${its}`);
