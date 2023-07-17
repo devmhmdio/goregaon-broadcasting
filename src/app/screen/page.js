@@ -5,6 +5,7 @@ export default function Screen() {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
     const user = localStorage.getItem('user');
+    console.log(user)
     if (user) {
       setUserData(JSON.parse(user));
     } else {
@@ -35,7 +36,7 @@ export default function Screen() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="p-4 bg-[#bc7101] text-white flex justify-between">
+      <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
         <h1 className="text-2xl">Goregaon Jamaat Broadcasting App</h1>
         <div className="relative inline-block">
           <div>

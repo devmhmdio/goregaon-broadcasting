@@ -67,7 +67,7 @@ export default function Login() {
           required
           className="mb-4 px-3 py-2 border border-gray-300"
         />
-        <button type="submit" className="px-4 py-2 bg-[#bc7101] text-white">
+        <button type="submit" className="px-4 py-2 bg-[#1c6e04] text-white">
           View Waaz
         </button>
       </form>
