@@ -18,7 +18,6 @@ export default function Login() {
 
     const data = await res.json();
 
-    console.log('this is response', data);
     if (data.status === 'Already logged in') {
       alert('Already logged in');
       window.location.reload();
@@ -28,12 +27,7 @@ export default function Login() {
       localStorage.setItem('user', JSON.stringify(data.user));
 
       if (data.user.userRole === 'user') {
-        if (data.user.isLoggedIn === false) {
-          window.location.href = '/screen';
-        } else {
-          alert('Already logged in');
-          window.location.reload();
-        }
+        window.location.href = '/screen';
       } else if (data.user.userRole === 'admin') {
         window.location.href = '/admin';
       }
