@@ -1,12 +1,36 @@
 'use client';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function Screen() {
+  const [userData, setUserData] = useState(null);
+  useEffect(() => {
+    const user = localStorage.getItem('user');
+    if (user) {
+      setUserData(JSON.parse(user));
+    } else {
+      // Replace with your own redirect logic
+      window.location.href = '/';
+    }
+  }, []);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   
-  const handleLogout = () => {
-    // Implement your logout functionality here
-    console.log("Logout Function");
+  const handleLogout = async () => {
+    try {
+      const response = await fetch('/api/logout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          its: userData?.its
+        })
+      });
+      if (!response.ok) throw new Error('Logout failed');
+      localStorage.removeItem('user');
+      window.location.href = '/';
+    } catch (error) {
+      console.error('Failed to logout:', error);
+    }
   };
 
   return (
@@ -19,7 +43,7 @@ export default function Screen() {
               onClick={() => setDropdownOpen(!dropdownOpen)}
               className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black"
             >
-              User Name
+              {userData?.name}
               <svg
                 className="w-4 h-4 ml-2"
                 fill="currentColor"

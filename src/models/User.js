@@ -20,6 +20,14 @@ const UserSchema = new mongoose.Schema({
     type: String,
     enum: ['admin', 'user'],
     default: 'user',
+  },
+  isLoggedIn: {
+    type: Boolean,
+    default: false,
+  },
+  multipleLogin: {
+    type: Boolean,
+    default: false,
   }
 });
 

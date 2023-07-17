@@ -19,13 +19,11 @@ export default function Admin() {
 
     if (res.status === 200) {
       alert('User created');
+      window.location.reload();
     } else {
-      // If it wasn't, show an error message
-      const body = await res.json();
-      // setError(body.error);
+      alert('User not added');
+      window.location.reload();
     }
-    // Do something with name, ITS, phone, address
-    console.log(`Name: ${name}, ITS: ${its}, Phone: ${phone}, Address: ${address}`);
   };
 
   const handleLogout = () => {

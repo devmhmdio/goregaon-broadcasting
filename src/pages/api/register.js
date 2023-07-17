@@ -16,8 +16,6 @@ export default async function handler(req, res) {
     });
 
     if (user) {
-    //   req.session.set('user', user);
-    //   await req.session.save();
       res.status(200).send({ done: true });
     } else {
       res.status(401).send({ error: 'Invalid details' });
