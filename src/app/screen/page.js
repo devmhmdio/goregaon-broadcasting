@@ -34,6 +34,35 @@ export default function Screen() {
     }
   };
 
+  useEffect(() => {
+    const logoutUser = async () => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      if (user) {
+        try {
+          const response = await fetch('/api/logout', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              its: user?.its,
+            }),
+          });
+          if (!response.ok) throw new Error('Logout failed');
+          localStorage.removeItem('user');
+        } catch (error) {
+          console.error('Failed to logout:', error);
+        }
+      }
+    }
+
+    window.addEventListener('beforeunload', logoutUser);
+
+    return () => {
+      window.removeEventListener('beforeunload', logoutUser);
+    }
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
