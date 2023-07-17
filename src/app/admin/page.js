@@ -131,7 +131,7 @@ export default function Admin() {
                 />
               </div>
             </div>
-            <button type="submit" className="px-4 py-2 text-white">Submit</button>
+            <button type="submit" className="px-4 py-2 text-white">Add User</button>
           </form>
         </main>
       </div>
