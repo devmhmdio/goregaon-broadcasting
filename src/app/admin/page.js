@@ -103,7 +103,8 @@ export default function Admin() {
                   id="its" 
                   value={its} 
                   onChange={(e) => setITS(e.target.value)} 
-                  required 
+                  required
+                  max={8}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
@@ -115,8 +116,7 @@ export default function Admin() {
                   type="tel" 
                   id="phone" 
                   value={phone} 
-                  onChange={(e) => setPhone(e.target.value)} 
-                  required 
+                  onChange={(e) => setPhone(e.target.value)}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
@@ -126,8 +126,7 @@ export default function Admin() {
                   type="text" 
                   id="address" 
                   value={address} 
-                  onChange={(e) => setAddress(e.target.value)} 
-                  required 
+                  onChange={(e) => setAddress(e.target.value)}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
