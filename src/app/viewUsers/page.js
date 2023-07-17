@@ -80,7 +80,7 @@ export default function ViewUsers() {
           <ul className="space-y-2">
             <li>
               <a href="/admin" className="block">
-                Create Login
+                Add Users
               </a>
             </li>
             <li>
@@ -90,7 +90,7 @@ export default function ViewUsers() {
             </li>
             <li>
               <a href="/screen" className="block">
-                View Screen
+                Live Screen
               </a>
             </li>
             <li>

@@ -76,9 +76,9 @@ export default function Admin() {
       <div className="flex-1 flex min-h-screen">
         <aside className="p-4 w-64 bg-[#edb767]">
           <ul className="space-y-2">
-            <li><a href="/admin" className="block">Create Login</a></li>
+            <li><a href="/admin" className="block">Add Users</a></li>
             <li><a href="#!" className="block">View Reports</a></li>
-            <li><a href="/screen" className="block">View Screen</a></li>
+            <li><a href="/screen" className="block">Live Screen</a></li>
             <li><a href="/viewUsers" className="block">View Users</a></li>
           </ul>
         </aside>
