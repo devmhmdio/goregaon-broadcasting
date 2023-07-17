@@ -49,7 +49,7 @@ export default function ViewUsers() {
           <div>
             <button
               onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#fff] text-white"
+              className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#1c6e04]"
             >
               {userData?.name}
               <svg
