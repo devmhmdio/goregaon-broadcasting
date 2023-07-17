@@ -39,7 +39,7 @@ export default function Admin() {
         <h1 className='text-2xl'>Goregaon Jamaat Broadcasting App</h1>
         <div className="relative inline-block">
           <div>
-            <button onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black">
+            <button onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#fff] text-white">
               User Name
               <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" stroke="none"><path d="M7 7l3-3 3 3m0 6l-3 3-3-3"></path></svg>
             </button>
@@ -57,6 +57,7 @@ export default function Admin() {
             <li><a href="#!" className="block">Create Login</a></li>
             <li><a href="#!" className="block">View Reports</a></li>
             <li><a href="#!" className="block">View Screen</a></li>
+            <li><a href="#!" className="block">View Users</a></li>
           </ul>
         </aside>
         <main className="flex-1 p-24">
@@ -109,7 +110,7 @@ export default function Admin() {
                 />
               </div>
             </div>
-            <button type="submit" className="px-4 py-2 bg-[#bc7101] text-white">Submit</button>
+            <button type="submit" className="px-4 py-2 text-white">Submit</button>
           </form>
         </main>
       </div>
