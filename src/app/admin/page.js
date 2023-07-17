@@ -77,7 +77,7 @@ export default function Admin() {
         <aside className="p-4 w-64 bg-[#edb767]">
           <ul className="space-y-2">
             <li><a href="/admin" className="block">Add Users</a></li>
-            <li><a href="#!" className="block">View Reports</a></li>
+            {/*<li><a href="#!" className="block">View Reports</a></li>*/}
             <li><a href="/screen" className="block">Live Screen</a></li>
             <li><a href="/viewUsers" className="block">View Users</a></li>
           </ul>

@@ -99,11 +99,11 @@ export default function ViewUsers() {
                 Add Users
               </a>
             </li>
-            <li>
+            {/*<li>
               <a href="#!" className="block">
                 View Reports
               </a>
-            </li>
+          </li>*/}
             <li>
               <a href="/screen" className="block">
                 Live Screen
