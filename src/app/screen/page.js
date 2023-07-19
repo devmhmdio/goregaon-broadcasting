@@ -5,7 +5,7 @@ export default function Screen() {
   const [userData, setUserData] = useState(null);
   useEffect(() => {
     const user = localStorage.getItem('user');
-    console.log(user)
+    console.log(user);
     if (user) {
       setUserData(JSON.parse(user));
     } else {
@@ -14,17 +14,17 @@ export default function Screen() {
     }
   }, []);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  
+
   const handleLogout = async () => {
     try {
       const response = await fetch('/api/logout', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          its: userData?.its
-        })
+          its: userData?.its,
+        }),
       });
       if (!response.ok) throw new Error('Logout failed');
       localStorage.removeItem('user');
@@ -54,13 +54,13 @@ export default function Screen() {
           console.error('Failed to logout:', error);
         }
       }
-    }
+    };
 
     window.addEventListener('beforeunload', logoutUser);
 
     return () => {
       window.removeEventListener('beforeunload', logoutUser);
-    }
+    };
   }, []);
 
   return (
@@ -101,12 +101,12 @@ export default function Screen() {
         <iframe
           width="1400"
           height="787"
-          src="https://www.youtube.com/embed/6Wca7Svh7Kg"
+          src="https://www.youtube.com/embed/6Wca7Svh7Kg?modestbranding=1&autoplay=1&sprivacy-enhanced-mode=1"
           title="YouTube video player"
           frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowFullScreen
-        ></iframe>
+        />
       </main>
     </div>
   );
