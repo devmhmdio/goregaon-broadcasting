@@ -1,13 +1,11 @@
-'use client'
+'use client';
+
 import { useEffect, useState } from 'react';
 
-export default function Admin() {
-  const [name, setName] = useState('');
-  const [its, setITS] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
-  const [dropdownOpen, setDropdownOpen] = useState(false);
+export default function Youtube() {
   const [userData, setUserData] = useState(null);
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [url, setUrl] = useState('');
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -21,17 +19,17 @@ export default function Admin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/register", {
+    const res = await fetch("/api/youtube", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, its, phone, address }),
+      body: JSON.stringify({ url }),
     });
 
     if (res.status === 200) {
-      alert('User created');
+      alert('URL updated successfully');
       window.location.reload();
     } else {
-      alert('User not added');
+      alert('URL not added');
       window.location.reload();
     }
   };
@@ -87,52 +85,18 @@ export default function Admin() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex space-x-4">
               <div className="flex-1">
-                <label htmlFor="name" className="block">Name:</label>
+                <label htmlFor="name" className="block">Youtube Url:</label>
                 <input 
                   type="text" 
-                  id="name" 
-                  value={name} 
-                  onChange={(e) => setName(e.target.value)} 
+                  id="url" 
+                  value={url} 
+                  onChange={(e) => setUrl(e.target.value)} 
                   required 
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
-              <div className="flex-1">
-                <label htmlFor="its" className="block">ITS:</label>
-                <input 
-                  type="text" 
-                  id="its" 
-                  value={its} 
-                  onChange={(e) => setITS(e.target.value)} 
-                  required
-                  max={8}
-                  className="px-3 py-2 border border-gray-300 block w-full"
-                />
-              </div>
             </div>
-            <div className="flex space-x-4">
-              <div className="flex-1">
-                <label htmlFor="phone" className="block">Phone:</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  value={phone} 
-                  onChange={(e) => setPhone(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 block w-full"
-                />
-              </div>
-              <div className="flex-1">
-                <label htmlFor="address" className="block">Address:</label>
-                <input 
-                  type="text" 
-                  id="address" 
-                  value={address} 
-                  onChange={(e) => setAddress(e.target.value)}
-                  className="px-3 py-2 border border-gray-300 block w-full"
-                />
-              </div>
-            </div>
-            <button type="submit" className="px-4 py-2 text-white">Add User</button>
+            <button type="submit" className="px-4 py-2 text-white">Update URL</button>
           </form>
         </main>
       </div>

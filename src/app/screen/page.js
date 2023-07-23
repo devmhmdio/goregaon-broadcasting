@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function Screen() {
   const [userData, setUserData] = useState(null);
+  const [youtube, setYoutube] = useState(null);
   useEffect(() => {
     const user = localStorage.getItem('user');
     console.log(user);
@@ -13,6 +14,14 @@ export default function Screen() {
       window.location.href = '/';
     }
   }, []);
+
+  useEffect(async () => {
+    const res = await fetch('/api/get-youtube-url');
+    const data = await res.json();
+    console.log(data);
+    setYoutube(data.url);
+  }, []);
+
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const handleLogout = async () => {
