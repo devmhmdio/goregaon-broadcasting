@@ -6,6 +6,21 @@ export default function Youtube() {
   const [userData, setUserData] = useState(null);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const [url, setUrl] = useState('');
+  const [currentUrl, setCurrentUrl] = useState('');
+
+  useEffect(() => {
+    const fetchCurrentUrl = async () => {
+      const res = await fetch('/api/get-youtube-url');
+      if (res.ok) {
+        const data = await res.json();
+        setCurrentUrl(data.url);
+      } else {
+        console.error('Failed to fetch current URL');
+      }
+    };
+
+    fetchCurrentUrl();
+  }, []);
 
   useEffect(() => {
     const user = localStorage.getItem('user');
@@ -109,9 +124,11 @@ export default function Youtube() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex space-x-4">
               <div className="flex-1">
+                <h2 className="block text-xl mb-3">Current Url: {currentUrl}</h2>
                 <label htmlFor="name" className="block">
                   Youtube Url:
                 </label>
+                
                 <input
                   type="text"
                   id="url"
