@@ -129,9 +129,9 @@ export default function Screen() {
           <div
             style={{
               position: 'absolute',
-              top: '6vw',
-              right: '33vw',
-              width: '100px',
+              top: '100px',
+              right: '13vw',
+              width: '700px',
               height: '100px',
               backgroundColor: 'transparent',
               zIndex: '1',
