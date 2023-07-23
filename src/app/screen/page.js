@@ -82,18 +82,10 @@ export default function Screen() {
         <div className="relative inline-block">
           <div>
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
+              onClick={handleLogout}
               className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black"
             >
-              {userData?.name}
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                stroke="none"
-              >
-                <path d="M7 7l3-3 3 3m0 6l-3 3-3-3"></path>
-              </svg>
+              Logout
             </button>
           </div>
           {dropdownOpen && (

@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { useEffect, useState } from 'react';
 
 export default function Admin() {
@@ -21,9 +21,9 @@ export default function Admin() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const res = await fetch("/api/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
+    const res = await fetch('/api/register', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ name, its, phone, address }),
     });
 
@@ -41,11 +41,11 @@ export default function Admin() {
       const response = await fetch('/api/logout', {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          its: userData?.its
-        })
+          its: userData?.its,
+        }),
       });
       if (!response.ok) throw new Error('Logout failed');
       localStorage.removeItem('user');
@@ -58,17 +58,25 @@ export default function Admin() {
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
-        <h1 className='text-2xl'>Goregaon Jamaat Broadcasting App</h1>
+        <h1 className="text-2xl">Goregaon Jamaat Broadcasting App</h1>
         <div className="relative inline-block">
           <div>
-            <button onClick={() => setDropdownOpen(!dropdownOpen)} className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#1c6e04]">
-              {userData?.name}
-              <svg className="w-4 h-4 ml-2" fill="currentColor" viewBox="0 0 20 20" stroke="none"><path d="M7 7l3-3 3 3m0 6l-3 3-3-3"></path></svg>
+            <button
+              onClick={handleLogout}
+              className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black"
+            >
+              Logout
             </button>
           </div>
           {dropdownOpen && (
             <div className="absolute right-0 w-40 mt-2 py-2 bg-white border rounded shadow-xl">
-              <a href="#" className="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-[#1c6e04] hover:text-white" onClick={handleLogout}>Logout</a>
+              <a
+                href="#"
+                className="transition-colors duration-200 block px-4 py-2 text-normal text-gray-900 rounded hover:bg-[#1c6e04] hover:text-white"
+                onClick={handleLogout}
+              >
+                Logout
+              </a>
             </div>
           )}
         </div>
@@ -76,34 +84,54 @@ export default function Admin() {
       <div className="flex-1 flex min-h-screen">
         <aside className="p-4 w-64 bg-[#edb767]">
           <ul className="space-y-2">
-            <li><a href="/admin" className="block">Add Users</a></li>
+            <li>
+              <a href="/admin" className="block">
+                Add Users
+              </a>
+            </li>
             {/*<li><a href="#!" className="block">View Reports</a></li>*/}
-            <li><a href="/screen" className="block">Live Screen</a></li>
-            <li><a href="/viewUsers" className="block">View Users</a></li>
-            <li><a href="/youtube" className="block">Change URL</a></li>
+            <li>
+              <a href="/screen" className="block">
+                Live Screen
+              </a>
+            </li>
+            <li>
+              <a href="/viewUsers" className="block">
+                View Users
+              </a>
+            </li>
+            <li>
+              <a href="/youtube" className="block">
+                Change URL
+              </a>
+            </li>
           </ul>
         </aside>
         <main className="flex-1 p-24">
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex space-x-4">
               <div className="flex-1">
-                <label htmlFor="name" className="block">Name:</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  value={name} 
-                  onChange={(e) => setName(e.target.value)} 
-                  required 
+                <label htmlFor="name" className="block">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  required
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
               <div className="flex-1">
-                <label htmlFor="its" className="block">ITS:</label>
-                <input 
-                  type="text" 
-                  id="its" 
-                  value={its} 
-                  onChange={(e) => setITS(e.target.value)} 
+                <label htmlFor="its" className="block">
+                  ITS:
+                </label>
+                <input
+                  type="text"
+                  id="its"
+                  value={its}
+                  onChange={(e) => setITS(e.target.value)}
                   required
                   max={8}
                   className="px-3 py-2 border border-gray-300 block w-full"
@@ -112,27 +140,33 @@ export default function Admin() {
             </div>
             <div className="flex space-x-4">
               <div className="flex-1">
-                <label htmlFor="phone" className="block">Phone:</label>
-                <input 
-                  type="tel" 
-                  id="phone" 
-                  value={phone} 
+                <label htmlFor="phone" className="block">
+                  Phone:
+                </label>
+                <input
+                  type="tel"
+                  id="phone"
+                  value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
               <div className="flex-1">
-                <label htmlFor="address" className="block">Address:</label>
-                <input 
-                  type="text" 
-                  id="address" 
-                  value={address} 
+                <label htmlFor="address" className="block">
+                  Address:
+                </label>
+                <input
+                  type="text"
+                  id="address"
+                  value={address}
                   onChange={(e) => setAddress(e.target.value)}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
             </div>
-            <button type="submit" className="px-4 py-2 text-white">Add User</button>
+            <button type="submit" className="px-4 py-2 text-white">
+              Add User
+            </button>
           </form>
         </main>
       </div>

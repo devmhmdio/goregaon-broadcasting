@@ -43,13 +43,13 @@ export default function ViewUsers() {
 
   const handleDelete = async (its) => {
     try {
-      console.log('this is its fe', its)
+      console.log('this is its fe', its);
       const response = await fetch(`/api/delete-user/${its}`, {
         method: 'DELETE',
       });
-  
+
       if (!response.ok) throw new Error('Deletion failed');
-  
+
       // Remove the user from the users state
       setUsers(users.filter((user) => user.its !== its));
     } catch (error) {
@@ -64,18 +64,10 @@ export default function ViewUsers() {
         <div className="relative inline-block">
           <div>
             <button
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-              className="inline-flex items-center px-4 py-2 bg-[#edb767] color-[#1c6e04]"
+              onClick={handleLogout}
+              className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black"
             >
-              {userData?.name}
-              <svg
-                className="w-4 h-4 ml-2"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-                stroke="none"
-              >
-                <path d="M7 7l3-3 3 3m0 6l-3 3-3-3"></path>
-              </svg>
+              Logout
             </button>
           </div>
           {dropdownOpen && (
@@ -99,11 +91,6 @@ export default function ViewUsers() {
                 Add Users
               </a>
             </li>
-            {/*<li>
-              <a href="#!" className="block">
-                View Reports
-              </a>
-          </li>*/}
             <li>
               <a href="/screen" className="block">
                 Live Screen
@@ -114,7 +101,11 @@ export default function ViewUsers() {
                 View Users
               </a>
             </li>
-            <li><a href="/youtube" className="block">Change URL</a></li>
+            <li>
+              <a href="/youtube" className="block">
+                Change URL
+              </a>
+            </li>
           </ul>
         </aside>
         <main className="flex-1 p-24">
@@ -139,7 +130,10 @@ export default function ViewUsers() {
                     {oneUser.isLoggedIn ? 'Yes' : 'No'}
                   </td>
                   <td className="p-3 px-5">
-                    <button className="bg-red-500 text-white px-2 py-1 rounded" onClick={() => handleDelete(oneUser.its)}>
+                    <button
+                      className="bg-red-500 text-white px-2 py-1 rounded"
+                      onClick={() => handleDelete(oneUser.its)}
+                    >
                       Delete
                     </button>
                   </td>
