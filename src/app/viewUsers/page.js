@@ -114,6 +114,7 @@ export default function ViewUsers() {
                 View Users
               </a>
             </li>
+            <li><a href="/youtube" className="block">Change URL</a></li>
           </ul>
         </aside>
         <main className="flex-1 p-24">
