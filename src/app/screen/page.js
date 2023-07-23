@@ -77,13 +77,13 @@ export default function Screen() {
 
   return (
     <div className="flex flex-col min-h-screen">
-      <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
-        <h1 className="text-2xl">Goregaon Jamaat Broadcasting App</h1>
+      <header className="px-4 py-2 bg-[#1c6e04] text-white flex justify-between md:px-6 md:py-4 lg:px-8 lg:py-6">
+        <h1 className="text-xl md:text-2xl lg:text-3xl">Goregaon Jamaat Broadcasting App</h1>
         <div className="relative inline-block">
           <div>
             <button
               onClick={handleLogout}
-              className="inline-flex items-center px-4 py-2 bg-[#edb767] text-black"
+              className="inline-flex items-center px-2 py-1 md:px-4 md:py-2 bg-[#edb767] text-black"
             >
               Logout
             </button>
@@ -101,11 +101,13 @@ export default function Screen() {
           )}
         </div>
       </header>
-      <main className="flex-1 p-10 flex justify-center">
-        <div>
+      <main className="p-4 flex justify-center md:p-6 lg:p-10">
+        <div className="w-full md:w-3/4 lg:w-1/2 h-screen flex justify-center">
           <ReactPlayer
             url={youtube}
             controls={true}
+            width='100%'
+            height='55%'
             config={{
               youtube: {
                 playerVars: {
