@@ -111,21 +111,32 @@ export default function Screen() {
       </header>
       <main className="flex-1 p-10 flex justify-center">
         <div>
-        <ReactPlayer
-        url={youtube}
-        controls={true}
-        config={{
-          youtube: {
-            playerVars: {
-              modestbranding: 1,
-              controls: 1,
-              disablekb: 1,
-              autoplay: 1,
-              rel: 0,
-            }
-          }
-        }}
-      />
+          <ReactPlayer
+            url={youtube}
+            controls={true}
+            config={{
+              youtube: {
+                playerVars: {
+                  modestbranding: 1,
+                  controls: 1,
+                  disablekb: 1,
+                  autoplay: 1,
+                  rel: 0,
+                },
+              },
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              top: '6vw',
+              right: '33vw',
+              width: '100px',
+              height: '100px',
+              backgroundColor: 'transparent',
+              zIndex: '1',
+            }}
+          ></div>
         </div>
       </main>
     </div>
