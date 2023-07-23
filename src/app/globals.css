@@ -67,3 +67,7 @@ button,
   border-color:#1c6e04;
   color: #1c6e04;
 }
+
+.ytp-chrome-top-buttons {
+  display: none !important;
+}

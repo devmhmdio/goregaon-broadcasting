@@ -1,25 +1,28 @@
 'use client';
 import { useEffect, useState } from 'react';
+import ReactPlayer from 'react-player';
+import './style.css';
 
 export default function Screen() {
   const [userData, setUserData] = useState(null);
   const [youtube, setYoutube] = useState(null);
+
   useEffect(() => {
     const user = localStorage.getItem('user');
-    console.log(user);
     if (user) {
       setUserData(JSON.parse(user));
     } else {
-      // Replace with your own redirect logic
       window.location.href = '/';
     }
   }, []);
 
-  useEffect(async () => {
-    const res = await fetch('/api/get-youtube-url');
-    const data = await res.json();
-    console.log(data);
-    setYoutube(data.url);
+  useEffect(() => {
+    const fetchData = async () => {
+      const res = await fetch('/api/get-youtube-url');
+      const data = await res.json();
+      setYoutube(data.url);
+    };
+    fetchData();
   }, []);
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -107,15 +110,23 @@ export default function Screen() {
         </div>
       </header>
       <main className="flex-1 p-10 flex justify-center">
-        <iframe
-          width="1400"
-          height="787"
-          src="https://www.youtube.com/embed/6Wca7Svh7Kg?modestbranding=1&autoplay=1&sprivacy-enhanced-mode=1"
-          title="YouTube video player"
-          frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-        />
+        <div>
+        <ReactPlayer
+        url={youtube}
+        controls={true}
+        config={{
+          youtube: {
+            playerVars: {
+              modestbranding: 1,
+              controls: 1,
+              disablekb: 1,
+              autoplay: 1,
+              rel: 0,
+            }
+          }
+        }}
+      />
+        </div>
       </main>
     </div>
   );
