@@ -111,21 +111,8 @@ export default function Admin() {
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex space-x-4">
               <div className="flex-1">
-                <label htmlFor="name" className="block">
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  required
-                  className="px-3 py-2 border border-gray-300 block w-full"
-                />
-              </div>
-              <div className="flex-1">
                 <label htmlFor="its" className="block">
-                  ITS:
+                  ITS: <span style={{color: 'red'}}>*</span>
                 </label>
                 <input
                   type="text"
@@ -134,6 +121,18 @@ export default function Admin() {
                   onChange={(e) => setITS(e.target.value)}
                   required
                   max={8}
+                  className="px-3 py-2 border border-gray-300 block w-full"
+                />
+              </div>
+              <div className="flex-1">
+                <label htmlFor="name" className="block">
+                  Name:
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
                   className="px-3 py-2 border border-gray-300 block w-full"
                 />
               </div>
