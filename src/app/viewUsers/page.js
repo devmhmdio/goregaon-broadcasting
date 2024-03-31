@@ -65,7 +65,10 @@ export default function ViewUsers() {
       });
 
       if (!response.ok) throw new Error('Update failed');
-      alert('User logged out from everywhere');
+      if (response.ok) {
+        alert('User logged out from everywhere');
+        window.location.reload();
+      }
 
     } catch (error) {
       console.error('Failed to update user:', error);
