@@ -57,6 +57,21 @@ export default function ViewUsers() {
     }
   };
 
+  const handleSessionLogout = async (its) => {
+    try {
+      console.log('this is its fe', its);
+      const response = await fetch(`/api/session-out/${its}`, {
+        method: 'PATCH',
+      });
+
+      if (!response.ok) throw new Error('Update failed');
+      alert('User logged out from everywhere');
+
+    } catch (error) {
+      console.error('Failed to update user:', error);
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen">
       <header className="p-4 bg-[#1c6e04] text-white flex justify-between">
@@ -130,6 +145,12 @@ export default function ViewUsers() {
                     {oneUser.isLoggedIn ? 'Yes' : 'No'}
                   </td>
                   <td className="p-3 px-5">
+                    <button
+                      className="bg-orange-500 text-white px-2 py-1 rounded mr-2"
+                      onClick={() => handleSessionLogout(oneUser.its)}
+                    >
+                      Session Logout
+                    </button>
                     <button
                       className="bg-red-500 text-white px-2 py-1 rounded"
                       onClick={() => handleDelete(oneUser.its)}

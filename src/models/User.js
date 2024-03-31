@@ -8,6 +8,7 @@ const UserSchema = new mongoose.Schema({
   },
   name: {
     type: String,
+    default: 'null'
   },
   phone: {
     type: Number,
